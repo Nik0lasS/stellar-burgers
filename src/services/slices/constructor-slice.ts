@@ -36,7 +36,7 @@ export const orderBurger = createAsyncThunk(
 );
 
 export const constructorSlice = createSlice({
-  name: 'constructor',
+  name: 'burgerConstructor',
   initialState,
   selectors: {
     constructorS: (state) => state
@@ -78,6 +78,24 @@ export const constructorSlice = createSlice({
     },
     setOrderModalDataNull: (state) => {
       state.orderModalData = null;
+    },
+    handleMoveUpFunc: (state, action) => {
+      [
+        state.constructorItems.ingredients[action.payload],
+        state.constructorItems.ingredients[action.payload - 1]
+      ] = [
+        state.constructorItems.ingredients[action.payload - 1],
+        state.constructorItems.ingredients[action.payload]
+      ];
+    },
+    handleMoveDownFunc: (state, action) => {
+      [
+        state.constructorItems.ingredients[action.payload],
+        state.constructorItems.ingredients[action.payload + 1]
+      ] = [
+        state.constructorItems.ingredients[action.payload + 1],
+        state.constructorItems.ingredients[action.payload]
+      ];
     }
   },
   extraReducers: (builder) => {
@@ -103,8 +121,16 @@ export const constructorSlice = createSlice({
   }
 });
 
-export const { addIngredients, removeIngredient, clearConstructor, setOrderRequest, setOrderModalDataNull } =
-  constructorSlice.actions;
+export const {
+  addIngredients,
+  removeIngredient,
+  clearConstructor,
+  setOrderRequest,
+  setOrderModalDataNull,
+  handleMoveUpFunc,
+  handleMoveDownFunc
+} = constructorSlice.actions;
+
 export const { constructorS } = constructorSlice.selectors;
 
 export default constructorSlice;

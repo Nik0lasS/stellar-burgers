@@ -33,35 +33,31 @@ const initialState: TUserState = {
 
 export const registerUser = createAsyncThunk(
   'user/registerUser',
-  async (data: TRegisterData) => await registerUserApi(data)
+  (data: TRegisterData) => registerUserApi(data)
 );
 
 export const loginUser = createAsyncThunk(
   'user/loginUser',
-  async (data: TLoginData) => await loginUserApi(data)
+  (data: TLoginData) => loginUserApi(data)
 );
 
-export const getUser = createAsyncThunk(
-  'user/getUser',
-  async () => await getUserApi()
-);
+export const getUser = createAsyncThunk('user/getUser', getUserApi);
 
 export const updateUser = createAsyncThunk(
   'user/updateUser',
-  async (user: Partial<TRegisterData>) => await updateUserApi(user)
+  (user: Partial<TRegisterData>) => updateUserApi(user)
 );
 
-export const logout = createAsyncThunk('user/logout', async () => await logoutApi());
+export const logout = createAsyncThunk('user/logout', logoutApi);
 
 export const forgotPassword = createAsyncThunk(
   'user/forgotPassword',
-  async (data: { email: string }) => await forgotPasswordApi(data)
+  (data: { email: string }) => forgotPasswordApi(data)
 );
 
 export const resetPassword = createAsyncThunk(
   'user/resetPassword',
-  async (data: { password: string; token: string }) =>
-    await resetPasswordApi(data)
+  (data: { password: string; token: string }) => resetPasswordApi(data)
 );
 
 export const userSlice = createSlice({
@@ -75,6 +71,9 @@ export const userSlice = createSlice({
   reducers: {
     checkIsAuth: (state) => {
       state.isAuthChecked = true;
+    },
+    clearUserErrors: (state) => {
+      state.error = null;
     }
   },
   extraReducers: (builder) => {
@@ -182,7 +181,7 @@ export const userSlice = createSlice({
   }
 });
 
-export const { checkIsAuth } = userSlice.actions;
+export const { checkIsAuth, clearUserErrors } = userSlice.actions;
 export const { getUserS, getUserStateS, getIsAuthS } = userSlice.selectors;
 
 export default userSlice;

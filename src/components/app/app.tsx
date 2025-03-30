@@ -17,11 +17,8 @@ import { AppHeader, OrderInfo, Modal, IngredientDetails } from '@components';
 import { getUser, checkIsAuth, getIngredients } from '@slices';
 import { useDispatch } from '../../services/store';
 import { useEffect } from 'react';
-import { error } from 'console';
 
 const App = () => {
-  const location = useLocation();
-  const backgroundLocation = location.state?.backgroundLocation;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -35,6 +32,9 @@ const App = () => {
     dispatch(getIngredients());
   }, [dispatch]);
 
+  const location = useLocation();
+  const backgroundLocation = location.state?.background;
+
   return (
     <div className={styles.app}>
       <AppHeader />
@@ -46,7 +46,7 @@ const App = () => {
         <Route
           path='/login'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <Login />
             </ProtectedRoute>
           }
@@ -54,7 +54,7 @@ const App = () => {
         <Route
           path='/register'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <Register />
             </ProtectedRoute>
           }
@@ -62,7 +62,7 @@ const App = () => {
         <Route
           path='/forgot-password'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <ForgotPassword />
             </ProtectedRoute>
           }
@@ -70,7 +70,7 @@ const App = () => {
         <Route
           path='/reset-password'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <ResetPassword />
             </ProtectedRoute>
           }
