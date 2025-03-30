@@ -31,34 +31,34 @@ const initialState: TUserState = {
   error: null
 };
 
-const registerUser = createAsyncThunk(
+export const registerUser = createAsyncThunk(
   'user/registerUser',
   async (data: TRegisterData) => await registerUserApi(data)
 );
 
-const loginUser = createAsyncThunk(
+export const loginUser = createAsyncThunk(
   'user/loginUser',
   async (data: TLoginData) => await loginUserApi(data)
 );
 
-const getUser = createAsyncThunk(
+export const getUser = createAsyncThunk(
   'user/getUser',
   async () => await getUserApi()
 );
 
-const updateUser = createAsyncThunk(
+export const updateUser = createAsyncThunk(
   'user/updateUser',
   async (user: Partial<TRegisterData>) => await updateUserApi(user)
 );
 
-const logout = createAsyncThunk('user/logout', async () => await logoutApi());
+export const logout = createAsyncThunk('user/logout', async () => await logoutApi());
 
-const forgotPassword = createAsyncThunk(
+export const forgotPassword = createAsyncThunk(
   'user/forgotPassword',
   async (data: { email: string }) => await forgotPasswordApi(data)
 );
 
-const resetPassword = createAsyncThunk(
+export const resetPassword = createAsyncThunk(
   'user/resetPassword',
   async (data: { password: string; token: string }) =>
     await resetPasswordApi(data)

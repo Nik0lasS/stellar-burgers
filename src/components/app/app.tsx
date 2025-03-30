@@ -14,13 +14,26 @@ import styles from './app.module.css';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { ProtectedRoute } from '@components';
 import { AppHeader, OrderInfo, Modal, IngredientDetails } from '@components';
+import { getUser, checkIsAuth, getIngredients } from '@slices';
 import { useDispatch } from '../../services/store';
 import { useEffect } from 'react';
+import { error } from 'console';
 
 const App = () => {
   const location = useLocation();
   const backgroundLocation = location.state?.backgroundLocation;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUser())
+      .unwrap()
+      .catch(() => console.log('error'))
+      .finally(() => {
+        dispatch(checkIsAuth());
+      });
+    dispatch(getIngredients());
+  }, [dispatch]);
 
   return (
     <div className={styles.app}>
