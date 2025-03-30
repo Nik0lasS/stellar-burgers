@@ -14,6 +14,8 @@ import styles from './app.module.css';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { ProtectedRoute } from '@components';
 import { AppHeader, OrderInfo, Modal, IngredientDetails } from '@components';
+import { useDispatch } from '../../services/store';
+import { useEffect } from 'react';
 
 const App = () => {
   const location = useLocation();
