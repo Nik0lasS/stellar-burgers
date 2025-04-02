@@ -91,6 +91,14 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route
+          path='/profile/orders/:number'
+          element={
+            <ProtectedRoute>
+              <OrderInfo />
+            </ProtectedRoute>
+          }
+        />
         <Route path='*' element={<NotFound404 />} />
       </Routes>
       {backgroundLocation && (
@@ -114,14 +122,16 @@ const App = () => {
           <Route
             path='/profile/orders/:number'
             element={
-              <Modal
-                title='Детали заказа'
-                onClose={() => {
-                  navigate('/profile/orders');
-                }}
-              >
-                <OrderInfo />
-              </Modal>
+              <ProtectedRoute>
+                <Modal
+                  title='Детали заказа'
+                  onClose={() => {
+                    navigate(-1);
+                  }}
+                >
+                  <OrderInfo />
+                </Modal>
+              </ProtectedRoute>
             }
           />
         </Routes>

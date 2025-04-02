@@ -66,7 +66,8 @@ export const userSlice = createSlice({
   selectors: {
     getUserS: (state) => state.user,
     getUserStateS: (state) => state,
-    getIsAuthS: (state) => state.isAuth
+    getIsAuthS: (state) => state.isAuth,
+    getIsLoadingS: (state) => state.isLoading
   },
   reducers: {
     checkIsAuth: (state) => {
@@ -182,6 +183,7 @@ export const userSlice = createSlice({
 });
 
 export const { checkIsAuth, clearUserErrors } = userSlice.actions;
-export const { getUserS, getUserStateS, getIsAuthS } = userSlice.selectors;
+export const { getUserS, getUserStateS, getIsAuthS, getIsLoadingS } =
+  userSlice.selectors;
 
 export default userSlice;

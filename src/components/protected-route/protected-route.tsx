@@ -1,6 +1,7 @@
 import { useSelector } from '../../services/store';
-import { getIsAuthS } from '@slices';
+import { getIsAuthS, getIsLoadingS } from '@slices';
 import { Navigate, useLocation } from 'react-router-dom';
+import { Preloader } from '../ui/preloader';
 
 type ProtectedRouteProps = {
   onlyUnAuth?: boolean;
@@ -14,6 +15,11 @@ export const ProtectedRoute = ({
   const isAuth = useSelector(getIsAuthS);
   const location = useLocation();
   const { from } = location.state || { from: { pathname: '/' } };
+  const preloaderState = useSelector(getIsLoadingS);
+
+  if (preloaderState) {
+    return <Preloader />;
+  }
 
   if (onlyUnAuth && isAuth) {
     return <Navigate to={from} />;
