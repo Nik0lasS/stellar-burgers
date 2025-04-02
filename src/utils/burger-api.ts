@@ -75,7 +75,9 @@ export const getIngredientsApi = () =>
   fetch(`${URL}/ingredients`)
     .then((res) => checkResponse<TIngredientsResponse>(res))
     .then((data) => {
-      if (data?.success) return data.data;
+      if (data?.success) {
+        return data.data;
+      }
       return Promise.reject(data);
     });
 
@@ -83,7 +85,10 @@ export const getFeedsApi = () =>
   fetch(`${URL}/orders/all`)
     .then((res) => checkResponse<TFeedsResponse>(res))
     .then((data) => {
-      if (data?.success) return data;
+      if (data?.success) {
+        return data;
+      }
+      console.log(data);
       return Promise.reject(data);
     });
 
