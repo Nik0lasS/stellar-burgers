@@ -10,9 +10,9 @@ import {
   resetPasswordApi,
   TRegisterData,
   TLoginData
-} from '../../utils/burger-api';
-import { TUser } from '../../utils/types';
-import { deleteCookie, setCookie } from '../../utils/cookie';
+} from '../../../utils/burger-api';
+import { TUser } from '../../../utils/types';
+import { deleteCookie, setCookie } from '../../../utils/cookie';
 import { get } from 'http';
 
 export type TUserState = {
@@ -185,5 +185,7 @@ export const userSlice = createSlice({
 export const { checkIsAuth, clearUserErrors } = userSlice.actions;
 export const { getUserS, getUserStateS, getIsAuthS, getIsLoadingS } =
   userSlice.selectors;
+
+export const userInitialState = initialState;
 
 export default userSlice;

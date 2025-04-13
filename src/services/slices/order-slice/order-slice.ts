@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getOrderByNumberApi } from '../../utils/burger-api';
-import { TOrder } from '../../utils/types';
+import { getOrderByNumberApi } from '../../../utils/burger-api';
+import { TOrder } from '../../../utils/types';
 
 export type TOrderState = {
   order: TOrder | null;
@@ -45,5 +45,7 @@ export const orderSlice = createSlice({
 });
 
 export const { getOrderS } = orderSlice.selectors;
+
+export const orderInitialState = initialState;
 
 export default orderSlice;
