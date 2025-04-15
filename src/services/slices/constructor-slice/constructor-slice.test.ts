@@ -26,7 +26,7 @@ describe('Проверка редьюсеров constructor-slice', () => {
 
   const bun = { ...ingredient, id: '2', _id: '2', type: 'bun' };
 
-  test('Проверка редьюсера addIngredients', () => {
+  test('Проверка редьюсера addIngredients с ingredient', () => {
     const state = constructorSlice.reducer(
       constructorInitialState,
       addIngredients(ingredient)
@@ -34,6 +34,17 @@ describe('Проверка редьюсеров constructor-slice', () => {
     expect(state.constructorItems.ingredients).toEqual([
       { ...ingredient, id: expect.any(String) }
     ]);
+  });
+
+  test('Проверка редьюсера addIngredients с bun', () => {
+    const state = constructorSlice.reducer(
+      constructorInitialState,
+      addIngredients(bun)
+    );
+    expect(state.constructorItems.bun).toEqual({
+      ...bun,
+      id: expect.any(String)
+    });
   });
 
   test('Проверка редьюсера removeIngredient', () => {

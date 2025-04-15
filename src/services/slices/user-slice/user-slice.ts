@@ -13,7 +13,6 @@ import {
 } from '../../../utils/burger-api';
 import { TUser } from '../../../utils/types';
 import { deleteCookie, setCookie } from '../../../utils/cookie';
-import { get } from 'http';
 
 export type TUserState = {
   user: TUser | null;
