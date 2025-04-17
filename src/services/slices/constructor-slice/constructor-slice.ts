@@ -2,11 +2,14 @@ import {
   createSlice,
   PayloadAction,
   nanoid,
-  createActionCreatorInvariantMiddleware,
   createAsyncThunk
 } from '@reduxjs/toolkit';
-import { TConstructorIngredient, TIngredient, TOrder } from '../../utils/types';
-import { orderBurgerApi } from '../../utils/burger-api';
+import {
+  TConstructorIngredient,
+  TIngredient,
+  TOrder
+} from '../../../utils/types';
+import { orderBurgerApi } from '../../../utils/burger-api';
 
 export type TConstructorState = {
   constructorItems: {
@@ -132,5 +135,7 @@ export const {
 } = constructorSlice.actions;
 
 export const { constructorS } = constructorSlice.selectors;
+
+export const constructorInitialState = initialState;
 
 export default constructorSlice;

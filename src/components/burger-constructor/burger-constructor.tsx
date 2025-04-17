@@ -12,7 +12,7 @@ import {
 import { useDispatch, useSelector } from '../../services/store';
 import { useNavigate } from 'react-router-dom';
 
-export const BurgerConstructor: FC = () => {
+export const BurgerConstructor: FC = ({ ...rest }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isAuth = useSelector(getIsAuthS);
@@ -65,6 +65,7 @@ export const BurgerConstructor: FC = () => {
       orderModalData={orderModalData}
       onOrderClick={onOrderClick}
       closeOrderModal={closeOrderModal}
+      {...rest}
     />
   );
 };
